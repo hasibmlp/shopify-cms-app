@@ -73,37 +73,60 @@ function TableContent() {
 
 function TableActions() {
     return (
-        <div className="py-3 flex">
-            <SearchInput style={{width: 200}}/>
-            <Menu/>
-            <ToggleMenuList
-                options={[
-                    {
-                        value: 'eng',
-                        label: 'English (eng)'
-                    },
-                    {
-                        value: 'ar',
-                        label: 'Arabic (ar) KSA'
-                    },
-                    {
-                        value: 'sp',
-                        label: 'Spanish (sp) special laguage'
-                    },
-                    {
-                        value: 'ind',
-                        label: 'India (ind)'
-                    },
-                    {
-                        value: 'pk',
-                        label: 'Pakistan (pk)'
-                    },
-                    {
-                        value: 'jp',
-                        label: 'Japan (jp)'
-                    },
-                ]}
-            />
+        <div className="py-3 flex items-center justify-between">
+            <div className="flex items-center gap-x-2">
+                <SearchInput style={{width: 200}}/>
+                <Menu/>
+            </div>
+            <div className="flex items-center gap-x-2">
+                <ToggleMenuList
+                    options={[
+                        {
+                            value: 'eng',
+                            label: 'English (eng)'
+                        },
+                        {
+                            value: 'ar',
+                            label: 'Arabic (ar) KSA'
+                        },
+                        {
+                            value: 'sp',
+                            label: 'Spanish (sp) special laguage'
+                        },
+                        {
+                            value: 'ind',
+                            label: 'India (ind)'
+                        },
+                        {
+                            value: 'pk',
+                            label: 'Pakistan (pk)'
+                        },
+                        {
+                            value: 'jp',
+                            label: 'Japan (jp)'
+                        },
+                    ]}
+                />
+                <SettingsMenuList/>
+            </div>
+        </div>
+    )
+}
+
+function SettingsMenuList({align='right'}) {
+    const [isBodyVisible, setBodyVisible] = useState(false)
+    const bodyAlign = align === 'right' ? 'right-0' : 'left-0'
+
+    return (
+        <div className="relative">
+            <button onClick={() => setBodyVisible(!isBodyVisible)} className={`h-8 bg-gray-200 px-2 border border-gray-300 rounded-[5px] flex items-center justify-center gap-x-2`}>
+                <span><svg className="w-4 h-4 fill-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.33409 4.54491C6.3494 3.63637 7.55145 2.9322 8.87555 2.49707C9.60856 3.4128 10.7358 3.99928 12 3.99928C13.2642 3.99928 14.3914 3.4128 15.1245 2.49707C16.4486 2.9322 17.6506 3.63637 18.6659 4.54491C18.2405 5.637 18.2966 6.90531 18.9282 7.99928C19.5602 9.09388 20.6314 9.77679 21.7906 9.95392C21.9279 10.6142 22 11.2983 22 11.9993C22 12.7002 21.9279 13.3844 21.7906 14.0446C20.6314 14.2218 19.5602 14.9047 18.9282 15.9993C18.2966 17.0932 18.2405 18.3616 18.6659 19.4536C17.6506 20.3622 16.4486 21.0664 15.1245 21.5015C14.3914 20.5858 13.2642 19.9993 12 19.9993C10.7358 19.9993 9.60856 20.5858 8.87555 21.5015C7.55145 21.0664 6.3494 20.3622 5.33409 19.4536C5.75952 18.3616 5.7034 17.0932 5.0718 15.9993C4.43983 14.9047 3.36862 14.2218 2.20935 14.0446C2.07212 13.3844 2 12.7002 2 11.9993C2 11.2983 2.07212 10.6142 2.20935 9.95392C3.36862 9.77679 4.43983 9.09388 5.0718 7.99928C5.7034 6.90531 5.75952 5.637 5.33409 4.54491ZM13.5 14.5974C14.9349 13.7689 15.4265 11.9342 14.5981 10.4993C13.7696 9.0644 11.9349 8.57277 10.5 9.4012C9.06512 10.2296 8.5735 12.0644 9.40192 13.4993C10.2304 14.9342 12.0651 15.4258 13.5 14.5974Z"></path></svg></span>
+            </button>
+            {isBodyVisible && (<div className={`absolute top-full ${bodyAlign} z-50`}>
+                <dir className="w-[200px] mt-1 p-3 bg-gray-200 rounded-[5px] overflow-hidden border-[.5px] border-gray-300">
+                    <span>item</span>
+                </dir>
+            </div>)}
         </div>
     )
 }
@@ -118,7 +141,7 @@ function Menu() {
     const [isBodyVisible, setBodyVisible] = useState(false)
     return (
         <div className="relative">
-            <button onClick={() => setBodyVisible(!isBodyVisible)} className={`bg-gray-200 py-1.5 px-3 rounded-[5px] flex items-center justify-center gap-x-2`}>
+            <button onClick={() => setBodyVisible(!isBodyVisible)} className={`h-8 bg-gray-200  px-2 rounded-[5px] flex items-center justify-center gap-x-2`}>
                 <span><svg className="w-4 h-4" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7C3 6.44772 3.44772 6 4 6H20C20.5523 6 21 6.44772 21 7C21 7.55228 20.5523 8 20 8H4C3.44772 8 3 7.55228 3 7ZM6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12ZM9 17C9 16.4477 9.44772 16 10 16H14C14.5523 16 15 16.4477 15 17C15 17.5523 14.5523 18 14 18H10C9.44772 18 9 17.5523 9 17Z" fill="#000000"></path> </g></svg></span>
                 <span>Filters</span>
             </button>
@@ -145,7 +168,7 @@ function ToggleMenuList({style, value, options}) {
 
     return (
         <div style={style} className="relative">
-            <button onClick={() => setBodyVisible(!isBodyVisible)} className={`w-full bg-gray-200 py-1 px-3 border border-gray-300 rounded-[5px] flex items-center justify-between gap-x-2`}>
+            <button onClick={() => setBodyVisible(!isBodyVisible)} className={`w-full h-8 bg-gray-200 px-2 border border-gray-300 rounded-[5px] flex items-center justify-between gap-x-2`}>
                 <span>{previewLabel}</span>
                 <span><svg className="w-4 h-4 fill-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 14L8 10H16L12 14Z"></path></svg></span>
             </button>
