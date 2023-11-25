@@ -1,2 +1,2 @@
 # shopify-cms-app
-CSM app built in shopify apps, remix, react
+CSM app built in shopify apps, using remix and react
