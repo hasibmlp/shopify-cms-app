@@ -1,0 +1,33 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "37c869254dd6dd7ecda48a9ce1162ad4"
+name = "hsb-cms-001"
+handle = "hsb-cms-001"
+application_url = "https://double-sail-plate-critics.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "hsb-store-dev.myshopify.com"
+include_config_on_deploy = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_metaobjects,write_metaobjects,write_products"
+
+[auth]
+redirect_urls = [
+  "https://double-sail-plate-critics.trycloudflare.com/auth/callback",
+  "https://double-sail-plate-critics.trycloudflare.com/auth/shopify/callback",
+  "https://double-sail-plate-critics.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-10"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+[pos]
+embedded = false
